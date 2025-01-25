@@ -36,9 +36,11 @@ class TransaksiController extends Controller
             'kode_voucher' => 'required',
             'kode_diskon' => 'required',
             'total_belanja' => 'required',
+            'jumlah' => 'required',
+            'total' => 'required',
         ]);
 
-        $data = [
+        $datatransaksi = [
             'kode_transaksi' => $request->kode_transaksi,
             'tgl_transaksi' => $request->tgl_transaksi,
             'kode_kasir' => $request->kode_kasir,
@@ -49,7 +51,16 @@ class TransaksiController extends Controller
             'total_belanja' => $request->total_belanja,
         ];
 
+        $datadetail = [
+            'kode_transaksi' => $request->kode_transaksi,
+            'kode_barang' => $request->kode_barang,
+            'jumlah' => $request->jumlah,
+            'total' => $request->total,
+        ];
+
         DB::table('transaksi')->insert($data);
+        DB::table('detail_transaksi')->insert($data);
+
         return redirect()->view('transaksi.index');
     }
 
