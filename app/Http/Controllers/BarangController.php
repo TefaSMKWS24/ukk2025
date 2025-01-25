@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class BarangController extends Controller
 {
@@ -63,7 +65,8 @@ class BarangController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $barang = DB::table('barang')->where('kode_barang', $id)->first();
+        return view('barang.edit', compact('barang'));
     }
 
     /**
@@ -71,7 +74,22 @@ class BarangController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_barang' => 'required',
+            'harga' => 'required',
+            'stok' => 'required',
+            'kode_kategori' => 'required',
+        ]);
+
+        $data = [
+            'nama_barang' => $request->nama_barang,
+            'harga' => $request->harga,
+            'stok' => $request->stok,
+            'kode_kategori' => $request->kode_kategori,
+        ];
+
+        DB::table('barang')->where('kode_barang', $id)->update($data);
+        return redirect()->view('barang.index');
     }
 
     /**
@@ -79,6 +97,7 @@ class BarangController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('barang')->where('kode_barang', $id)->delete();
+        return redirect()->view('barang.index');
     }
 }
