@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
 class KasirController extends Controller
 {
     /**
@@ -19,7 +23,7 @@ class KasirController extends Controller
      */
     public function create()
     {
-        //
+        return view('kasir.create');
     }
 
     /**
@@ -27,7 +31,23 @@ class KasirController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode_kasir' => 'required',
+            'nama_kasir' => 'required',
+            'password' => 'required',
+            'nohp' => 'required',
+        ]);
+
+        $data = [
+            'kode_kasir' => $request->kode_kasir,
+            'nama_kasir' => $request->nama_kasir,
+            'password' => $request->password,
+            'nohp' => $request->nohp,
+        ];
+
+        DB::table('kasir')->insert($data);
+
+        return redirect()->view('kasir.index');
     }
 
     /**
@@ -43,7 +63,8 @@ class KasirController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kasir = DB::table('kasir')->where('kode_kasir', $id)->first();
+        return view('kasir.edit', compact('kasir'));
     }
 
     /**
@@ -51,7 +72,21 @@ class KasirController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_kasir' => 'required',
+            'password' => 'required',
+            'nohp' => 'required',
+        ]);
+
+        $data = [
+            'nama_kasir' => $request->nama_kasir,
+            'password' => $request->password,
+            'nohp' => $request->nohp,
+        ];
+
+        DB::table('kasir')->where('kode_kasir', $id)->update($data);
+        return redirect()->view('kasir.index');
+
     }
 
     /**
@@ -59,6 +94,7 @@ class KasirController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('kasir')->where('kode_kasir', $id)->delete();
+        return redirect()->view('kasir.index');
     }
 }

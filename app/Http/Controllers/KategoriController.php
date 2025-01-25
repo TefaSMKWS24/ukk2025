@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
 class KategoriController extends Controller
 {
     /**
@@ -19,7 +23,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('kategori.create');
     }
 
     /**
@@ -27,7 +31,21 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode_kategori' => 'required',
+            'nama_kategori' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        $data = [
+            'kode_kategori' => $request->kode_kategori,
+            'nama_kategori' => $request->nama_kategori,
+            'keterangan' => $request->keterangan,
+        ];
+
+        DB::table('kategori')->insert($data);
+        return redirect()->view('kategori.index');
+
     }
 
     /**
@@ -43,7 +61,8 @@ class KategoriController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kategori = DB::table('kategori')->where('kode_kategori', $id)->first();
+        return view('kategori.edit', compact('kategori'));
     }
 
     /**
@@ -51,7 +70,18 @@ class KategoriController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_kategori' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        $data = [
+            'nama_kategori' => $request->nama_kategori,
+            'keterangan' => $request->keterangan,
+        ];
+
+        DB::table('kategori')->where('kode_kategori', $id)->update($data);
+        return redirect()->view('kategori.index');
     }
 
     /**
@@ -59,6 +89,7 @@ class KategoriController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('kategori')->where('kode_kategori', $id)->delete();
+        return redirect()->view('kategori.index');
     }
 }
