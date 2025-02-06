@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class KasirSeeder extends Seeder
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,13 +16,12 @@ class KasirSeeder extends Seeder
     {
         $data = [
             [
-                'kode_kasir' => 'KS001',
+                'email' => 'admin@admin.com',
+                'name' => 'Admin',
                 'password' => Hash::make('password'),
-                'nama_kasir' => 'Kasir 1',
-                'nohp' => '08123456789',
             ],
         ];
 
-        DB::table('kasir')->insert($data);
+        DB::table('users')->insert($data);
     }
 }

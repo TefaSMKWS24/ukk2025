@@ -12,6 +12,9 @@ class Kasir extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    protected $table = 'kasir';
+
     /**
      * The attributes that are mass assignable.
      *
