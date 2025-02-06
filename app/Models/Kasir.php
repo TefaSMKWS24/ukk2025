@@ -19,8 +19,9 @@ class Kasir extends Authenticatable
      */
     protected $fillable = [
         'kode_kasir',
-        'nama_kasir',
         'password',
+        'nama_kasir',
+        'nohp',
     ];
 
     /**
@@ -42,4 +43,3 @@ class Kasir extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 }
-
