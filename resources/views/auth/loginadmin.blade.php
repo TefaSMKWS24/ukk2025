@@ -59,11 +59,11 @@
           <form action="/loginadmin" method="post">
             @csrf
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Username" />
+              <input type="email" name="email" id="email" class="form-control" placeholder="Email" />
               <div class="input-group-text"><span class="bi bi-envelope"></span></div>
             </div>
             <div class="input-group mb-3">
-              <input type="password" class="form-control" placeholder="Password" />
+              <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
               <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
             </div>
             <!--begin::Row-->
