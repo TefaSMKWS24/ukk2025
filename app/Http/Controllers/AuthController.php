@@ -16,11 +16,11 @@ class AuthController extends Controller
         {
             dd('Berhasil: '.Auth::guard('kasir')->user());
             Log::info('Login successful');
-            //return redirect('/user/dashboard');
+            //return redirect('/kasir/dashboard');
         }
         else{
             echo "Login Gagal";
-            //return redirect('/user')->with('warning', 'NIS / Password Salah!');
+            //return redirect('/kasir')->with('warning', 'NIS / Password Salah!');
         }
     }
 
@@ -40,11 +40,11 @@ class AuthController extends Controller
         {
             dd('Berhasil: '.Auth::guard('admin')->user());
             Log::info('Login successful');
-            //return redirect('/user/dashboard');
+            //return redirect('/admin/dashboard');
         }
         else{
             echo "Login Gagal";
-            //return redirect('/user')->with('warning', 'NIS / Password Salah!');
+            //return redirect('/admin')->with('warning', 'NIS / Password Salah!');
         }
     }
 
