@@ -23,7 +23,7 @@ class BarangSeeder extends Seeder
             ],
             [
                 'kode_barang' => 'BR002',
-                'nama_barang' => 'Sepatu',
+                'nama_barang' => 'Baju Gamis',
                 'harga' => 30000,
                 'stok' => 10,
                 'kode_kategori' => 'K002',

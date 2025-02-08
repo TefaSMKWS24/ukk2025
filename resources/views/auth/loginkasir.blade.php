@@ -50,12 +50,12 @@
   <body class="login-page bg-body-secondary">
     <div class="login-box">
       <div class="login-logo">
-        <a href="../index2.html"><b>UKK RPL</b> 2025</a>
+        <a href="/"><b>UKK RPL</b> 2025</a>
       </div>
       <!-- /.login-logo -->
       <div class="card">
         <div class="card-body login-card-body">
-          <p class="login-box-msg">Sign in to start your session</p>
+          <p class="login-box-msg">Silahkan login terlebih dahulu</p>
           <form action="/loginkasir" method="post">
             @csrf
             <div class="input-group mb-3">
