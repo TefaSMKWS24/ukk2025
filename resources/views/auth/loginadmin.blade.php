@@ -42,7 +42,7 @@
     />
     <!--end::Third Party Plugin(Bootstrap Icons)-->
     <!--begin::Required Plugin(AdminLTE)-->
-    <link rel="stylesheet" href="../../../dist/css/adminlte.css" />
+    <link rel="stylesheet" href="{{ asset('css/adminlte.css') }}" />
     <!--end::Required Plugin(AdminLTE)-->
   </head>
   <!--end::Head-->
@@ -51,26 +51,24 @@
     <div class="login-box">
       <div class="card card-outline card-primary">
         <div class="card-header">
-          <a
-            href="../index2.html"
-            class="link-dark text-center link-offset-2 link-opacity-100 link-opacity-50-hover"
-          >
-            <h1 class="mb-0"><b>Admin</b>LTE</h1>
+          <a href="/" class="link-dark text-center link-offset-2 link-opacity-100 link-opacity-50-hover">
+            <h1 class="mb-0"><b>UKK RPL</b>2025</h1>
           </a>
         </div>
         <div class="card-body login-card-body">
-          <p class="login-box-msg">Sign in to start your session</p>
-          <form action="../index3.html" method="post">
+          <p class="login-box-msg">Silahkan login terlebih dahulu</p>
+          <form action="/loginadmin" method="post">
+            @csrf
             <div class="input-group mb-1">
               <div class="form-floating">
-                <input id="loginEmail" type="email" class="form-control" value="" placeholder="" />
+                <input id="loginEmail" name="email" type="email" class="form-control" value="" placeholder="" />
                 <label for="loginEmail">Email</label>
               </div>
               <div class="input-group-text"><span class="bi bi-envelope"></span></div>
             </div>
             <div class="input-group mb-1">
               <div class="form-floating">
-                <input id="loginPassword" type="password" class="form-control" placeholder="" />
+                <input id="loginPassword" name"password" type="password" class="form-control" placeholder="" />
                 <label for="loginPassword">Password</label>
               </div>
               <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
@@ -131,7 +129,7 @@
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-    <script src="../../../dist/js/adminlte.js"></script>
+    <script src="{{ asset('js/adminlte.js') }}"></script>
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
     <script>
       const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
