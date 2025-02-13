@@ -10,4 +10,10 @@ class Kategori extends Model
     use HasFactory;
 
     protected $table = 'kategori';
+
+    public function barang()
+    {
+        return $this->hasMany(Barang::class);
+    }
+
 }

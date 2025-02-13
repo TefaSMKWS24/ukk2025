@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\Barang;
+
 class BarangController extends Controller
 {
     /**
@@ -15,7 +17,12 @@ class BarangController extends Controller
      */
     public function index()
     {
-        return view('barang.index');
+        //$barang = Barang::all();
+        $barang = DB::table('barang')
+        ->join('kategori', 'barang.kode_kategori', '=', 'kategori.kode_kategori')
+        ->select('barang.*', 'kategori.nama_kategori')
+        ->get();
+        return view('barang.index', compact('barang'));
     }
 
     /**
